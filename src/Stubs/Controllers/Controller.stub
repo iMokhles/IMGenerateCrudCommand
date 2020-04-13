@@ -1,0 +1,172 @@
+<?php
+
+namespace App\Http\Controllers\{{$guardName}}\CRUD;
+
+use App\Http\Controllers\{{$guardName}}\Requests\Create{{$name}}Request;
+use App\Http\Controllers\{{$guardName}}\Requests\Update{{$name}}Request;
+use App\Repositories\{{$name}}Repository;
+use App\Http\Controllers\{{$guardName}}\CRUD\AppBaseController;
+use Illuminate\Http\Request;
+use Alert;
+use Response;
+use App\Models\{{$name}};
+
+class {{$name}}Controller extends AppBaseController
+{
+    /** @var  {{$name}}Repository */
+    private ${{$nameSmall}}Repository;
+
+    public function __construct({{$name}}Repository ${{$nameSmall}}Repo)
+    {
+        $this->middleware('auth:{{$guardNameSmall}}');
+        $this->{{$nameSmall}}Repository = ${{$nameSmall}}Repo;
+    }
+
+    /**
+     * Display a listing of the {{$name}}.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        ${{$nameSmallPlural}} = $this->{{$nameSmall}}Repository->paginate(10);
+
+        return view('crud.{{$nameSmallPlural}}.index')
+            ->with([
+                '{{$nameSmallPlural}}' => ${{$nameSmallPlural}}
+                , 'page_title' => "{{$namePlural}}"
+                , 'columns' => {{$name}}::$index_columns]);
+    }
+
+    /**
+     * Show the form for creating a new {{$name}}.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('crud.{{$nameSmallPlural}}.create')->with([
+            'page_title' => "{{$namePlural}}"
+            , 'fields' => {{$name}}::$create_fields
+        ]);
+    }
+
+    /**
+     * Store a newly created {{$name}} in storage.
+     *
+     * @param Create{{$name}}Request $request
+     *
+     * @return Response
+     */
+    public function store(Create{{$name}}Request $request)
+    {
+        $input = $request->all();
+
+        ${{$nameSmall}} = $this->{{$nameSmall}}Repository->create($input);
+
+        Alert::success('{{$name}} saved successfully.')->flash();
+
+        return redirect(route('{{$nameSmallPlural}}.index'));
+    }
+
+    /**
+     * Display the specified {{$name}}.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        ${{$nameSmall}} = $this->{{$nameSmall}}Repository->find($id);
+
+        if (empty(${{$nameSmall}})) {
+            Alert::error('{{$name}} not found')->flash();
+
+            return redirect(route('{{$nameSmallPlural}}.index'));
+        }
+
+        return view('crud.{{$nameSmallPlural}}.show')->with(
+            ['{{$nameSmall}}' => ${{$nameSmall}}
+            , 'page_title' => "{{$namePlural}}"
+            , 'columns' => {{$name}}::$show_columns
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified {{$name}}.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        ${{$nameSmall}} = $this->{{$nameSmall}}Repository->find($id);
+
+        if (empty(${{$nameSmall}})) {
+            Alert::error('{{$name}} not found')->flash();
+
+            return redirect(route('{{$nameSmallPlural}}.index'));
+        }
+
+        return view('crud.{{$nameSmallPlural}}.edit')->with([
+            '{{$nameSmall}}' => ${{$nameSmall}}
+            , 'page_title' => "{{$namePlural}}"
+            , 'fields' => {{$name}}::$edit_fields
+        ]);
+    }
+
+    /**
+     * Update the specified {{$name}} in storage.
+     *
+     * @param int $id
+     * @param Update{{$name}}Request $request
+     *
+     * @return Response
+     */
+    public function update($id, Update{{$name}}Request $request)
+    {
+        ${{$nameSmall}} = $this->{{$nameSmall}}Repository->find($id);
+
+        if (empty(${{$nameSmall}})) {
+            Alert::error('{{$name}} not found')->flash();
+
+            return redirect(route('{{$nameSmallPlural}}.index'));
+        }
+
+        ${{$nameSmall}} = $this->{{$nameSmall}}Repository->update($request->all(), $id);
+
+        Alert::success('{{$name}} updated successfully.')->flash();
+
+        return redirect(route('{{$nameSmallPlural}}.index'));
+    }
+
+    /**
+     * Remove the specified {{$name}} from storage.
+     *
+     * @param int $id
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        ${{$nameSmall}} = $this->{{$nameSmall}}Repository->find($id);
+
+        if (empty(${{$nameSmall}})) {
+            Alert::error('{{$name}} not found')->flash();
+
+            return redirect(route('{{$nameSmallPlural}}.index'));
+        }
+
+        $this->{{$nameSmall}}Repository->delete($id);
+
+        Alert::success('{{$name}} deleted successfully.')->flash();
+
+        return redirect(route('{{$nameSmallPlural}}.index'));
+    }
+}

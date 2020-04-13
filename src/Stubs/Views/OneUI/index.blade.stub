@@ -1,0 +1,19 @@
+@extends('{{$guardNameSmall}}.layouts.layout')
+
+@section('content')
+<!-- Your Block -->
+<div class="block">
+    <div class="block-header">
+        <h3 class="block-title">
+            {{$namePlural}}
+        </h3>
+        <div class="block-options">
+            <a href="{{ route('{{$nameSmallPlural}}.create') }}" class="btn btn-sm btn-primary">Add New</a>
+        </div>
+    </div>
+    <div class="block-content">
+        @include('crud.{{$nameSmallPlural}}.table')
+    </div>
+</div>
+<!-- END Your Block -->
+@endsection

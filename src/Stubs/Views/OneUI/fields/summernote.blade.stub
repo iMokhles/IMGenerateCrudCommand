@@ -1,0 +1,26 @@
+@php
+$value = '';
+    if(isset($object)) {
+        $value = $object->{$field['name']};
+    } else {
+        if (isset($field['default'])) {
+            $value = $field['default'];
+        }
+    }
+@endphp
+<div class="form-group">
+    <label for="{{$field['name']}}">{!! $field['label'] !!}</label>
+    <div
+        class="js-summernote"
+        name="{{ $field['name'] }}"
+        data-init-function="bpFieldInitSummernoteElement"
+        data-options="{{ json_encode($field['options']) }}"
+    >{{ $value }}</div>
+</div>
+@push('after_scripts')
+<script>
+    function bpFieldInitSummernoteElement(element) {
+        element.summernote(element.data('options'));
+    }
+</script>
+@endpush

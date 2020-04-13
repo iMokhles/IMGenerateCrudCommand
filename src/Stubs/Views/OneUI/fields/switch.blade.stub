@@ -1,0 +1,55 @@
+@php
+$value = '';
+    if(isset($object)) {
+        $value = $object->{$field['name']};
+    } else {
+        if (isset($field['default'])) {
+            $value = $field['default'];
+        }
+    }
+@endphp
+<div class="form-group">
+    <div class="custom-control custom-switch mb-1">
+        <input
+            type="hidden"
+            name="{{ $field['name'] }}"
+            value="{{ $value }}">
+        <input
+            data-init-function="bpFieldInitCheckbox"
+            type="checkbox"
+            class="custom-control-input"
+            id="{{ $field['name'] }}_checkbox"
+            name="{{ $field['name'] }}_checkbox"
+            @if ($value === 1)
+                checked="checked"
+            @endif
+            >
+        <label class="custom-control-label" for="{{ $field['name'] }}_checkbox">{!! $field['label'] !!}</label>
+    </div>
+</div>
+
+@push('after_scripts')
+<script>
+    function bpFieldInitCheckbox(element) {
+        var hidden_element = element.siblings('input[type=hidden]');
+        // make sure the value is a boolean (so it will pass validation)
+        if (hidden_element.val() === '') hidden_element.val(0);
+        // set the default checked/unchecked state
+        // if the field has been loaded with javascript
+        if (hidden_element.val() != 0) {
+            element.prop('checked', 'checked');
+        } else {
+            element.prop('checked', false);
+        }
+        // when the checkbox is clicked
+        // set the correct value on the hidden input
+        element.change(function() {
+            if (element.is(":checked")) {
+                hidden_element.val(1);
+            } else {
+                hidden_element.val(0);
+            }
+        })
+    }
+</script>
+@endpush

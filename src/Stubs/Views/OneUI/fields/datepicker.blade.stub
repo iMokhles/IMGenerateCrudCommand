@@ -1,0 +1,21 @@
+@php
+$value = '';
+    if(isset($object)) {
+        $value = $object->{$field['name']};
+    } else {
+        if (isset($field['default'])) {
+            $value = $field['default'];
+        }
+    }
+@endphp
+<div class="form-group">
+    <label for="{{$field['name']}}">{!! $field['label'] !!}</label>
+    <input
+        type="text"
+        class="js-flatpickr form-control bg-white"
+        id="{{$field['name']}}"
+        name="{{$field['name']}}"
+        placeholder="d-m-Y"
+        value="{{ $value }}"
+        data-date-format="d-m-Y">
+</div>

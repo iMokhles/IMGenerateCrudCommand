@@ -1,0 +1,8 @@
+@foreach($fields as $field)
+@include('crud.fields.'.$field['type'], ['field' => $field])
+@endforeach
+<!-- Submit -->
+<div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{{route('{{$nameSmallPlural}}.index')}}" class="btn btn-danger">Cancel</a>
+</div>

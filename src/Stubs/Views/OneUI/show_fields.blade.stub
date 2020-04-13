@@ -1,0 +1,12 @@
+<ul class="nav-items push">
+    @foreach($columns as $column)
+        <li>
+            <a class="media py-3" href="javascript:void(0)">
+                <div class="media-body">
+                    <div class="font-w600">{{ucfirst($column['label'])}}</div>
+                    <div class="font-size-sm text-muted">{{ ${{$nameSmall}}->{$column['name']} }}</div>
+                </div>
+            </a>
+        </li>
+    @endforeach
+</ul>

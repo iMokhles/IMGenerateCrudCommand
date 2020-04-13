@@ -1,0 +1,94 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
+class {{$name}} extends Model
+{
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = '{{$nameSmallPlural}}';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+
+    ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['id'];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+
+    ];
+
+    /**
+     * List page index columns
+     *
+     * @var array
+     */
+    public static $index_columns = [
+
+    ];
+
+    /**
+     * Object creation fields
+     *
+     * @var array
+     */
+    public static $create_fields = [
+
+    ];
+
+    /**
+     * Object editing fields
+     *
+     * @var array
+     */
+    public static $edit_fields = [
+
+    ];
+
+    /**
+     * Object showing columns
+     *
+     * @var array
+     */
+    public static $show_columns = [
+
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+
+    ];
+
+}

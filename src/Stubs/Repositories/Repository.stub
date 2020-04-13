@@ -1,0 +1,33 @@
+<?php
+
+
+namespace App\Repositories;
+
+use App\Models\{{$name}};
+use App\Repositories\BaseRepository;
+
+class {{$name}}Repository extends BaseRepository
+{
+    /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        // put here all searchable fields
+    ];
+
+    /**
+     * Return searchable fields
+     *
+     * @return array
+     */
+    public function getFieldsSearchable() {
+        return $this->fieldSearchable;
+    }
+
+    /**
+     * Configure the Model
+     **/
+    public function model() {
+        return {{$name}}::class;
+    }
+}

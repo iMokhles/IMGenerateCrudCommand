@@ -1,0 +1,36 @@
+@extends('{{$guardNameSmall}}.layouts.layout')
+
+@section('content')
+<!-- Your Block -->
+<div class="block">
+    <div class="block-header">
+        <h3 class="block-title">
+            {{$namePlural}}
+        </h3>
+        <div class="block-options">
+            <a href="{{ route('{{$nameSmallPlural}}.index') }}" class="btn btn-sm btn-primary">Back</a>
+        </div>
+    </div>
+    <div class="block-content">
+        {!! Form::model(${{$nameSmall}}, ['route' => ['{{$nameSmallPlural}}.update', ${{$nameSmall}}->id], 'method' => 'patch']) !!}
+            @include('crud.{{$nameSmallPlural}}.edit_fields')
+        {!! Form::close() !!}
+    </div>
+</div>
+<!-- END Your Block -->
+@endsection
+
+@section('after_styles')
+@parent
+<link rel="stylesheet" href="{{ asset(config('{{$guardNameSmall}}_config.theme_name')) }}/js/plugins/summernote/summernote-bs4.css">
+<link rel="stylesheet" href="{{ asset(config('{{$guardNameSmall}}_config.theme_name')) }}/js/plugins/flatpickr/flatpickr.min.css">
+<link rel="stylesheet" href="{{ asset(config('{{$guardNameSmall}}_config.theme_name')) }}/js/plugins/select2/css/select2.min.css">
+@endsection
+
+@section('after_scripts')
+@parent
+<script src="{{ asset(config('{{$guardNameSmall}}_config.theme_name')) }}/js/plugins/flatpickr/flatpickr.min.js"></script>
+<script src="{{ asset(config('{{$guardNameSmall}}_config.theme_name')) }}/js/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="{{ asset(config('{{$guardNameSmall}}_config.theme_name')) }}/js/plugins/select2/js/select2.full.min.js"></script>
+<script>jQuery(function(){ One.helpers(['flatpickr', 'summernote', 'select2']); });</script>
+@endsection
