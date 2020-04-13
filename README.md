@@ -67,9 +67,61 @@ Example usage:
 
 
 ``` bash
-php artisan make:im_crud MODEL_NAME GUARD_NAME --admin_theme="oneui"
+php artisan make:im_crud MODEL_NAME GUARD_NAME --admin_theme="oneui" --model --migration
 ```
 
+If you already has model and migration don't pass --model --migration options
+``` bash
+php artisan make:im_crud MODEL_NAME GUARD_NAME --admin_theme="oneui" --model --migration
+```
+
+Add the following to your Model if Model created manually
+``` php
+    /**
+     * List page index columns
+     *
+     * @var array
+     */
+    public static $index_columns = [
+
+    ];
+
+    /**
+     * Object creation fields
+     *
+     * @var array
+     */
+    public static $create_fields = [
+
+    ];
+
+    /**
+     * Object editing fields
+     *
+     * @var array
+     */
+    public static $edit_fields = [
+
+    ];
+
+    /**
+     * Object showing columns
+     *
+     * @var array
+     */
+    public static $show_columns = [
+
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+
+    ];
+```
 ## Security
 
 If you discover any security related issues, please email imokhles@imokhles.com instead of using the issue tracker.
