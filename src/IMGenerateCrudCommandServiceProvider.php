@@ -1,10 +1,7 @@
-
 <?php
 
 namespace iMokhles\IMGenerateCrudCommand;
 
-use Illuminate\Database\Migrations\MigrationCreator;
-use Illuminate\Support\Composer;
 use Illuminate\Support\ServiceProvider;
 use iMokhles\IMGenerateCrudCommand\Command\IMGenerateCrudCommand;
 
