@@ -72,7 +72,7 @@ php artisan make:im_crud MODEL_NAME GUARD_NAME --admin_theme="oneui" --model --m
 
 If you already has model and migration don't pass --model --migration options
 ``` bash
-php artisan make:im_crud MODEL_NAME GUARD_NAME --admin_theme="oneui" --model --migration
+php artisan make:im_crud MODEL_NAME GUARD_NAME --admin_theme="oneui"
 ```
 
 Add the following to your Model if Model created manually
